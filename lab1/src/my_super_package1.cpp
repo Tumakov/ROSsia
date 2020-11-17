@@ -4,7 +4,7 @@ using namespace std;
 
 static ros::Publisher g_publisher_bool;
 
-void getMessageCallback(const std_msgs::bool::ConstPtr& msg)
+void getMessageCallback(const std_msgs::Bool::ConstPtr& msg)
 {
   bool received_bool_value = msg->data;
   
@@ -18,7 +18,7 @@ void getMessageCallback(const std_msgs::bool::ConstPtr& msg)
   }  
   else
   {
-    std_msgs::bool response;
+    std_msgs::Bool response;
     response.data = (first_msg && received_bool_value) || !first_msg;
     first_msg = false;
     count = false;
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     //init publisher
     const int PUBLISHER_MESSAGE_QUEUE_SIZE = 2;
     const std::string PUBLISHER_TOPIC_NAME = "bool_out";
-    g_publisher_bool = n.advertise<std_msgs::bool>(PUBLISHER_TOPIC_NAME, PUBLISHER_MESSAGE_QUEUE_SIZE);
+    g_publisher_bool = n.advertise<std_msgs::Bool>(PUBLISHER_TOPIC_NAME, PUBLISHER_MESSAGE_QUEUE_SIZE);
 
     //init subscriber
     const int SUBSCRIBER_MESSAGE_QUEUE_SIZE = 2;
